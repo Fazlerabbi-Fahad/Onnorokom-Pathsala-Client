@@ -1,20 +1,15 @@
 import React from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import './Courses.css';
 
 const Courses = () => {
     const courses = useLoaderData()
     return (
-        <div className="grid grid-cols-2">
-            <div>
-                {
-                    courses.map(course =>
-                        <p><Link>{course.course}</Link></p>)
-                }
-            </div>
-            <div>
+        <div>
+            {
+                courses.map(course => <p>{course.name}</p>)
+            }
 
-            </div>
         </div>
     );
 };
