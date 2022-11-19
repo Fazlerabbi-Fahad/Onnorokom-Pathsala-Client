@@ -11,6 +11,8 @@ const CourseMain = () => {
             .then(res => res.json())
             .then(data => setCourse(data))
     }, [])
+
+
     return (
         <div>
             <div>

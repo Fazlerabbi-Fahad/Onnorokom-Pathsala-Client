@@ -1,7 +1,8 @@
 import React from 'react';
 
-const Classes = ({ classes }) => {
-    const { video, name, duration } = classes;
+
+const Classes = ({ course }) => {
+    const { video, name, duration } = course;
     return (
         <div>
             <div className="card glass" style={{ height: '350px', width: '300px' }}>
@@ -10,7 +11,7 @@ const Classes = ({ classes }) => {
                         title={name}
                         className='w-full h-50'
                         allowfullscreen="allowfullscreen"
-                        mozallowfullscreen="mozallowfullscreen">
+                        mozallowFullscreen="mozallowFullscreen">
 
                     </iframe>
                 </figure>
