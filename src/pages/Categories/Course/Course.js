@@ -11,7 +11,7 @@ const Course = () => {
 
     return (
         <div>
-            <div className="hero min-h-screen mb-10" style={{ backgroundImage: `url(${img4})` }}>
+            <div className="hero mb-10" style={{ backgroundImage: `url(${img4})` }}>
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">
                     <div className="max-w-md">
