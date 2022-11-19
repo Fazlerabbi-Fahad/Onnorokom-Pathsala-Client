@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const Register = () => {
-    const { createUser, updateUserProfile, signInWithGoogle, signInGitHub } = useContext(AuthContext)
+    const { createUser, updateUserProfile, signInWithGoogle, signInGitHub, setLoading } = useContext(AuthContext)
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -33,6 +33,7 @@ const Register = () => {
                             const user = result.user;
                             if (user?.email) {
                                 navigate(from, { replace: true })
+                                setLoading(false)
                             }
                         })
                         .catch(error => console.error(error))
@@ -49,6 +50,7 @@ const Register = () => {
                 const user = result.user;
                 if (user?.email) {
                     navigate(from, { replace: true })
+                    setLoading(false)
                 }
             })
             .then(error => console.error(error))
@@ -60,6 +62,7 @@ const Register = () => {
                 const user = result.user;
                 if (user?.email) {
                     navigate(from, { replace: true })
+                    setLoading(false)
                 }
             })
             .then(error => console.error(error))
