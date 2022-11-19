@@ -3,6 +3,7 @@ import { Form, Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Login = () => {
     const { signIn, signInWithGoogle, signInGitHub, setLoading } = useContext(AuthContext)
@@ -21,11 +22,12 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 if (user?.email) {
+                    toast.success('Login Successful')
                     navigate(from, { replace: true })
                     setLoading(false);
                 }
             })
-            .catch(error => console.log(error))
+            .catch(error => toast.error(error.message))
 
     }
 
@@ -34,11 +36,12 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 if (user?.email) {
+                    toast.success('Login Successful')
                     navigate(from, { replace: true })
                     setLoading(false)
                 }
             })
-            .then(error => console.error(error))
+            .then(error => toast.error(error.message))
     }
 
     const handleGitHubSubmit = () => {
@@ -46,11 +49,12 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 if (user?.email) {
+                    toast.success('Login Successful')
                     navigate(from, { replace: true })
                     setLoading(false);
                 }
             })
-            .then(error => console.error(error))
+            .then(error => toast.error(error.message))
     }
     return (
         <div className='w-full'>
