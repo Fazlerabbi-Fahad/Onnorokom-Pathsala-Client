@@ -1,13 +1,16 @@
 import React from 'react';
-import { Form, Link } from 'react-router-dom';
+import { Form, Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const Register = () => {
-    const { createUser, updateUserProfile } = useContext(AuthContext)
+    const { createUser, updateUserProfile, signInWithGoogle, signInGitHub } = useContext(AuthContext)
 
+    const location = useLocation();
+    const navigate = useNavigate();
 
+    const from = location?.state?.from?.pathname || '/';
     const handleSubmit = event => {
         event.preventDefault();
         const form = event.target;
@@ -26,13 +29,40 @@ const Register = () => {
                 const user = result.user;
                 if (user.email) {
                     updateUserProfile(profile)
-                        .then(result => { })
+                        .then(result => {
+                            const user = result.user;
+                            if (user?.email) {
+                                navigate(from, { replace: true })
+                            }
+                        })
                         .catch(error => console.error(error))
                 }
 
             })
             .catch(error => console.error(error.message))
 
+    }
+
+    const handleGoogleSubmit = () => {
+        signInWithGoogle()
+            .then(result => {
+                const user = result.user;
+                if (user?.email) {
+                    navigate(from, { replace: true })
+                }
+            })
+            .then(error => console.error(error))
+    }
+
+    const handleGitHubSubmit = () => {
+        signInGitHub()
+            .then(result => {
+                const user = result.user;
+                if (user?.email) {
+                    navigate(from, { replace: true })
+                }
+            })
+            .then(error => console.error(error))
     }
     return (
         <div className='w-full'>
@@ -78,12 +108,12 @@ const Register = () => {
                                 <p>Already have an account?<Link className='btn btn-ghost' to='/login'>Login</Link></p>
 
                                 <div className="form-control mt-1">
-                                    <button className="btn btn-active btn-ghost">
+                                    <button onClick={handleGoogleSubmit} className="btn btn-active btn-ghost">
                                         <FaGoogle className='mr-2' />
                                         Signup with Google</button>
                                 </div>
                                 <div className="form-control mt-1">
-                                    <button className="btn btn-active btn-ghost">
+                                    <button onClick={handleGitHubSubmit} className="btn btn-active btn-ghost">
                                         <FaGithub className='mr-2'></FaGithub>
                                         Signup with GitHub</button>
                                 </div>

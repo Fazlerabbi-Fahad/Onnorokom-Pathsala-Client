@@ -1,4 +1,4 @@
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import Classes from '../Classes/Classes';
 import './Courses.css';
 import img3 from '../../../Images/img3.jpg';
@@ -14,6 +14,7 @@ const Courses = () => {
                 <div className="hero-content text-center text-neutral-content">
                     <div className="max-w-md">
                         <h1 className="mb-5 text-5xl font-bold">All Classes is here. Ready to learn.</h1>
+                        <button className="btn btn-active btn-ghost"><Link to='/courses/checkout'>Get Premium</Link></button>
                         <p className="mb-5 text-xl">Total Classes : <span className='font-bold'>{courses.length}</span></p>
                     </div>
                 </div>

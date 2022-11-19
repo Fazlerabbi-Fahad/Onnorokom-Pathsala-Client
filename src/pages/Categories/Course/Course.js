@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import Classes from '../Classes/Classes';
 import img4 from '../../../Images/img3.jpg';
 
@@ -16,7 +16,7 @@ const Course = () => {
                 <div className="hero-content text-center text-neutral-content">
                     <div className="max-w-md">
                         <h1 className="mb-5 text-5xl font-bold">Ready to learn. Let's run together.</h1>
-
+                        <button className="btn btn-active btn-ghost"><Link to='/courses/checkout'>Get Premium</Link></button>
                         <p className="mb-5 text-2xl font-bold">Total Classes : {courses.length}</p>
                     </div>
                 </div>

@@ -1,11 +1,15 @@
 import React from 'react';
-import { Form, Link } from 'react-router-dom';
+import { Form, Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const Login = () => {
-    const { signIn } = useContext(AuthContext)
+    const { signIn, signInWithGoogle, signInGitHub } = useContext(AuthContext)
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location?.state?.from?.pathname || '/';
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -16,10 +20,34 @@ const Login = () => {
         signIn(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                if (user?.email) {
+                    navigate(from, { replace: true })
+                }
             })
             .catch(error => console.log(error))
 
+    }
+
+    const handleGoogleSubmit = () => {
+        signInWithGoogle()
+            .then(result => {
+                const user = result.user;
+                if (user?.email) {
+                    navigate(from, { replace: true })
+                }
+            })
+            .then(error => console.error(error))
+    }
+
+    const handleGitHubSubmit = () => {
+        signInGitHub()
+            .then(result => {
+                const user = result.user;
+                if (user?.email) {
+                    navigate(from, { replace: true })
+                }
+            })
+            .then(error => console.error(error))
     }
     return (
         <div className='w-full'>
@@ -54,12 +82,12 @@ const Login = () => {
                                     <p>New to Onnorokom Pathshala? <Link className='btn btn-ghost' to='/register'>Sign up</Link></p>
                                 </div>
                                 <div className="form-control mt-1">
-                                    <button className="btn btn-active btn-ghost">
+                                    <button onClick={handleGoogleSubmit} className="btn btn-active btn-ghost">
                                         <FaGoogle className='mr-2' />
                                         Login with Google</button>
                                 </div>
                                 <div className="form-control mt-1">
-                                    <button className="btn btn-active btn-ghost">
+                                    <button onClick={handleGitHubSubmit} className="btn btn-active btn-ghost">
                                         <FaGithub className='mr-2'></FaGithub>
                                         Login with GitHub</button>
                                 </div>

@@ -2,6 +2,7 @@ import './Home.css'
 import About from "../../Categories/About/About";
 import Login from "../../Login/Login/Login";
 import img1 from '../../../Images/img1.jpg';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
@@ -13,7 +14,7 @@ const Home = () => {
                     <div className="max-w-md">
                         <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
                         <p className="mb-5">This is a online learning platform.You can learn from our website and use this videos for helping people without business purpose.</p>
-                        <button className="btn btn-active btn-ghost">Let's Learn</button>
+                        <button className="btn btn-active btn-ghost"><Link to='/courses'>Let's Learn</Link></button>
                     </div>
                 </div>
             </div>

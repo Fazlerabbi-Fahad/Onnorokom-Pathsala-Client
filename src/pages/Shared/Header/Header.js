@@ -7,7 +7,13 @@ import { FaUserAlt } from "react-icons/fa";
 
 const Header = () => {
 
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleLogOut = () => {
+        logOut()
+            .then(result => { })
+            .catch(error => console.error(error))
+    }
 
     const menuItem =
         <>
@@ -19,23 +25,22 @@ const Header = () => {
             {
                 user?.email ?
                     <>
+                        <li><Link to='/courses/checkout'>Check Out</Link></li>
                         <div className='m-4 font-bold'>
                             {
-                                user?.name ?
-                                    <h1>{user?.name}</h1>
-                                    :
-                                    <h1>{user?.email}</h1>
+                                user?.displayName &&
+                                <h1>{user?.displayName}</h1>
                             }
                         </div>
                         <div>
                             {
                                 user?.photoURL ?
-                                    <img style={{ height: '30px' }} roundedCircle src={user?.photoURL} alt="" />
+                                    <img className='mr-5 mt-3 border rounded-full' style={{ height: '30px' }} src={user?.photoURL} alt="" />
                                     :
                                     <FaUserAlt className='my-5 mr-10' />
                             }
                         </div>
-                        <Link className="btn btn-outline btn-accent" to='/'>Log Out</Link>
+                        <Link onClick={handleLogOut} className="btn btn-outline btn-accent" to='/'>Log Out</Link>
                     </>
                     :
                     <Link className="btn btn-outline btn-accent" to='/login'>Login</Link>
@@ -60,7 +65,7 @@ const Header = () => {
 
                     </div>
                 </div>
-                <div className="navbar-end hidden lg:flex">
+                <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
                         {menuItem}
                     </ul>
