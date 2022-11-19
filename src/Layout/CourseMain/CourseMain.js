@@ -5,7 +5,7 @@ import Header from '../../pages/Shared/Header/Header';
 
 const CourseMain = () => {
     const [courses, setCourse] = useState([]);
-    console.log(courses);
+
     useEffect(() => {
         fetch('http://localhost:5000/courses')
             .then(res => res.json())
@@ -23,7 +23,7 @@ const CourseMain = () => {
                         <label htmlFor="onnorokomDrawer" tabIndex={0} className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
-
+                        <Outlet></Outlet>
                     </div>
                     <div className="drawer-side">
                         <label htmlFor="onnorokomDrawer" className="drawer-overlay"></label>
