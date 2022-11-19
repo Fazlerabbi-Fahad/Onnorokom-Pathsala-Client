@@ -10,6 +10,7 @@ import Register from "../../pages/Login/Register/Register";
 import Course from "../../pages/Categories/Course/Course";
 import CheckOut from "../../pages/Categories/CheckOut/CheckOut";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
+import NotFound from "../../NotFound/NotFound";
 
 export const routes = createBrowserRouter([
     {
@@ -61,5 +62,9 @@ export const routes = createBrowserRouter([
                 element: <PrivateRoutes><CheckOut></CheckOut></PrivateRoutes>
             }
         ]
+    },
+    {
+        path: "/*",
+        element: <NotFound></NotFound>
     }
 ])
