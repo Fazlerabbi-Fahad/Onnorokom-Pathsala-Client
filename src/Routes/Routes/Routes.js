@@ -3,10 +3,11 @@ import Main from "../../Layout/Main/Main";
 import Home from "../../pages/Categories/Home/Home";
 import Courses from "../../pages/Categories/Courses/Courses";
 import About from "../../pages/Categories/About/About";
-import FAQ from "../../pages/Categories/FAQ/FAQ";
 import Blog from "../../pages/Categories/Blog/Blog";
 import CourseMain from "../../Layout/CourseMain/CourseMain";
 import Course from "../../pages/Categories/Course/Course";
+import Login from "../../pages/Login/Login/Login";
+import Register from "../../pages/Login/Register/Register";
 
 export const routes = createBrowserRouter([
     {
@@ -42,12 +43,16 @@ export const routes = createBrowserRouter([
                 element: <About></About>
             },
             {
-                path: '/faq',
-                element: <FAQ></FAQ>
-            },
-            {
                 path: '/blog',
                 element: <Blog></Blog>
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: '/register',
+                element: <Register></Register>
             }
         ]
     }
