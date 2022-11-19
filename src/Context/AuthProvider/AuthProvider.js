@@ -50,7 +50,9 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser);
             setLoading(false);
         })
-        return unsubscribe();
+        return () => {
+            return unsubscribe();
+        }
     }, [])
     const authInfo = {
         user,
