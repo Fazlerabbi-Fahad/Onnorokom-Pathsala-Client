@@ -1,10 +1,18 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import Classes from '../Classes/Classes';
 import './Courses.css';
 
 const Courses = () => {
-    const courses = useLoaderData()
+    const [courses, setCourses] = useState('');
+
+    useEffect(() => {
+        fetch('http://localhost:5000/courses/')
+            .then(res => res.json())
+            .then(data => setCourses())
+    }, [])
+
     return (
         <div className='grid grid-cols-3 gap-4 mr-10'>
             {

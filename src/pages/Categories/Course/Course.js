@@ -1,16 +1,23 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import Classes from '../Classes/Classes';
 
 const Course = () => {
-    const classes = useLoaderData()
+    const [course, setCourse] = useState('')
+    useEffect(() => {
+        fetch('http://localhost:5000/course/')
+            .then(res => res.json())
+            .then(data => setCourse(data))
+    }, [])
+
     return (
         <div>
             <div className='grid grid-cols-3 gap-4 mr-10'>
                 {
-                    classes.map(course => <Classes
-                        key={course._id}
-                        course={course}
+                    course.map(classes => <Classes
+                        key={classes._id}
+                        classes={classes}
                     ></Classes>)
                 }
 

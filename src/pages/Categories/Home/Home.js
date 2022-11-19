@@ -1,10 +1,10 @@
-import React from 'react';
 import './Home.css'
 import About from "../../Categories/About/About";
 import Login from "../../Login/Login/Login";
-import img1 from '../../../Images/img1.jpg'
+import img1 from '../../../Images/img1.jpg';
 
 const Home = () => {
+
     return (
         <div>
             <div className="hero min-h-screen" style={{ backgroundImage: `url(${img1})` }}>
@@ -23,7 +23,6 @@ const Home = () => {
             <div>
                 <Login></Login>
             </div>
-
         </div >
     );
 };
