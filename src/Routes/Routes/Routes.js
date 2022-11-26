@@ -9,6 +9,7 @@ import Login from "../../pages/Login/Login/Login";
 import Register from "../../pages/Login/Register/Register";
 import Course from "../../pages/Categories/Course/Course";
 import CheckOut from "../../pages/Categories/CheckOut/CheckOut";
+import Class from "../../pages/Categories/Class/Class";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 import NotFound from "../../NotFound/NotFound";
 
@@ -40,29 +41,38 @@ export const routes = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
-            }
+            },
+            {
+                path: '/classes/:id',
+                element: <Class></Class>,
+                loader: ({ params }) => fetch(`http://localhost:5000/course/${params.id}`)
+            },
+            {
+                path: '/checkout',
+                element: <PrivateRoutes><CheckOut></CheckOut></PrivateRoutes>
+            },
         ]
     },
     {
         path: '/courses',
-        element: <PrivateRoutes><CourseMain></CourseMain></PrivateRoutes>,
+        element: <CourseMain></CourseMain>,
         children: [
             {
                 path: '/courses',
-                element: <PrivateRoutes><Courses></Courses></PrivateRoutes>,
-                loader: () => fetch('http://localhost:5000/course/')
+                element: <Courses></Courses>,
+                loader: () => fetch('https://onnorokom-pathsala-server.vercel.app/course/')
             },
             {
                 path: '/courses/:id',
-                element: <PrivateRoutes><Course></Course></PrivateRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}`)
+                element: <Course></Course>,
+                loader: ({ params }) => fetch(`https://onnorokom-pathsala-server.vercel.app/courses/${params.id}`)
             },
-            {
-                path: '/courses/checkout',
-                element: <PrivateRoutes><CheckOut></CheckOut></PrivateRoutes>
-            }
+
+
         ]
     },
+
+
     {
         path: "/*",
         element: <NotFound></NotFound>

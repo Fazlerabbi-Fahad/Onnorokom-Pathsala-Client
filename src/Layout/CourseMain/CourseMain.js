@@ -7,7 +7,7 @@ const CourseMain = () => {
     const [courses, setCourse] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/courses')
+        fetch('https://onnorokom-pathsala-server.vercel.app/courses')
             .then(res => res.json())
             .then(data => setCourse(data))
     }, [])

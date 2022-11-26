@@ -6,7 +6,6 @@ import img3 from '../../../Images/img3.jpg';
 
 const Courses = () => {
     const courses = useLoaderData()
-    console.log(courses);
     return (
         <div>
             <div className="hero mb-10" style={{ backgroundImage: `url(${img3})` }}>
